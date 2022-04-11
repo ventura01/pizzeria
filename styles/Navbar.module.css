@@ -1,0 +1,77 @@
+.container{
+    height: 100px;
+    padding: 0 50px;
+    background-color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+}
+.item{
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+.item:last-child{
+    justify-content: flex-end;
+}
+.item:nth-child(2){
+    flex: 3;
+}
+.callButton{
+    background-color: white;
+    padding: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+.texts{
+    margin-left: 20px;
+    color: white;
+}
+.text:first-child{
+    font-size: 14px;
+    font-weight: 600;
+}
+.text:last-child{
+    font-weight: bold;
+    font-size: 20px;
+}
+.list{
+    color: white;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+.listItem{
+    font-weight: 600;
+    margin: 20px;
+}
+.cart{
+    position: relative;
+}
+.counter{
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    padding: 3px;
+    background-color: white;
+    width: 20px;
+    height: 20px;
+    color: var(--primary-color);
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
