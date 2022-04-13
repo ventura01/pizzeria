@@ -85,3 +85,37 @@
     margin-left: 10px;
     height: 30px;
 }
+@media screen and (max-width: 480px){
+    .container{
+        height: auto;
+        text-align: center;
+        flex-direction: column;
+    }
+    .imgContainer{
+        height: 40vh;
+        width: 40vh;
+        margin-top: 20px;
+    }
+    .sizes{
+        width: 80%;
+        padding: 0 20px;
+    }
+    .ingredients{
+        flex-direction: column;
+    }
+    .option{
+        margin: 10px;
+        font-size: 18px;
+    }
+    .checkbox{
+        width: 25px;
+        height: 25px;
+    }
+    .quantity, .button{
+        height: 45px;
+        padding: 10px 20px;
+    }
+    .button{
+        margin-bottom: 30px;
+    }
+}
