@@ -27,3 +27,14 @@
 .motto{
     color: rgb(238, 238, 238);
 }
+@media screen and (max-width: 480px){
+    .container{
+        height: auto;
+    }
+    .item:first-child{
+        display: none;
+    }
+    .item{
+        flex-direction: column;
+    }
+}
