@@ -14,7 +14,7 @@
     position: relative;
 }
 .table{
-    /* width: 100%; */
+    width: 100%;
     border-spacing: 20px;
 }
 .name{
@@ -36,8 +36,8 @@
     color: white;
     flex-direction: column;
 }
-.title{}
-.totalText{}
+/* .title{} */
+/* .totalText{} */
 .totalTextTitle{
     margin-right: 10px;
 }
