@@ -6,6 +6,8 @@ import Image from "next/image";
 const Product = ({ pizza }) => {
   const [price, setPrice] = useState(pizza.prices[0]);
   const [size, setSize] = useState(0);
+  const [quantity, setQuantity] = useState(1);
+  const [extras, setExtras] = useState([]);
   const changePrice = (number) => {
     setPrice(price + number);
   };
@@ -18,11 +20,13 @@ const Product = ({ pizza }) => {
     const checked = e.target.checked;
     if (checked) {
       changePrice(option.price);
+      setExtras((prev) => [...prev, option]);
     } else {
       changePrice(-option.price);
+      setExtras(extras.filter((extra) => extra._id !== option._id));
     }
   };
-  console.log(price);
+  console.log(extras);
   return (
     <div className={styles.container}>
       <div className={styles.left}>
@@ -86,6 +90,7 @@ const Product = ({ pizza }) => {
             id="qty"
             defaultValue={1}
             className={styles.quantity}
+            onChange={(e) => setQuantity(e.target.value)}
           />
           <button className={styles.button}>Add to cart</button>
         </div>
