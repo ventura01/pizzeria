@@ -11,6 +11,7 @@
 }
 .right{
     flex: 1;
+    padding: 50px;
 }
 .imgContainer{
     width: 80%;
@@ -90,6 +91,9 @@
         height: auto;
         text-align: center;
         flex-direction: column;
+    }
+    .right{
+        padding: 10px;
     }
     .imgContainer{
         height: 40vh;
