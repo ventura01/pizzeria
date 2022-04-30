@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import Image from "next/image";
 import styles from "../styles/Navbar.module.css";
 
@@ -16,7 +17,9 @@ const Navbar = () => {
       </div>
       <div className={styles.item}>
         <ul className={styles.list}>
-          <li className={styles.listItem}>Home</li>
+          <Link passHref href="/">
+            <li className={styles.listItem}>Home</li>
+          </Link>
           <li className={styles.listItem}>Products</li>
           <li className={styles.listItem}>Menu</li>
           <Image src="/img/logo.png" alt="" width={160} height={69} />
