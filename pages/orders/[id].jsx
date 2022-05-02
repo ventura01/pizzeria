@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import Image from "next/image";
 import axios from "axios";
 import styles from "../../styles/Order.module.css";
