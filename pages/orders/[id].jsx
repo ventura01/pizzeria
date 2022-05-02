@@ -1,9 +1,10 @@
 import React from "react";
 import Image from "next/image";
+import axios from "axios";
 import styles from "../../styles/Order.module.css";
 
-const Order = () => {
-  const status = 0;
+const Order = ({ order }) => {
+  const status = order.status;
   const statusClass = (index) => {
     if (index - status < 1) return styles.done;
     if (index - status === 1) return styles.inProgress;
@@ -23,17 +24,17 @@ const Order = () => {
             </tr>
             <tr className={styles.tr}>
               <td>
-                <span className={styles.id}>12547</span>
+                <span className={styles.id}>{order._id}</span>
               </td>
               <td>
-                <span className={styles.name}>john Doe </span>
+                <span className={styles.name}>{order.customer}</span>
               </td>
               <td>
-                <span className={styles.address}>513 Haskell Grove</span>
+                <span className={styles.address}>{order.address}</span>
               </td>
 
               <td>
-                <span className={styles.total}>69.99</span>
+                <span className={styles.total}>{order.total}</span>
               </td>
             </tr>
           </table>
@@ -43,28 +44,52 @@ const Order = () => {
             <Image src="/img/paid.png" alt="" width={30} height={30} />
             <span>Payment</span>
             <div className={styles.checkedIcon}>
-              <Image className={styles.checkedIcon} src="/img/checked.png" alt="" width={20} height={20} />
+              <Image
+                className={styles.checkedIcon}
+                src="/img/checked.png"
+                alt=""
+                width={20}
+                height={20}
+              />
             </div>
           </div>
           <div className={statusClass(1)}>
             <Image src="/img/bake.png" alt="" width={30} height={30} />
             <span>Preparing</span>
             <div className={styles.checkedIcon}>
-              <Image className={styles.checkedIcon} src="/img/checked.png" alt="" width={20} height={20} />
+              <Image
+                className={styles.checkedIcon}
+                src="/img/checked.png"
+                alt=""
+                width={20}
+                height={20}
+              />
             </div>
           </div>
           <div className={statusClass(2)}>
             <Image src="/img/bike.png" alt="" width={30} height={30} />
             <span>On the way</span>
             <div className={styles.checkedIcon}>
-              <Image className={styles.checkedIcon} src="/img/checked.png" alt="" width={20} height={20} />
+              <Image
+                className={styles.checkedIcon}
+                src="/img/checked.png"
+                alt=""
+                width={20}
+                height={20}
+              />
             </div>
           </div>
           <div className={statusClass(3)}>
             <Image src="/img/delivered.png" alt="" width={30} height={30} />
             <span>Delivered</span>
             <div className={styles.checkedIcon}>
-              <Image className={styles.checkedIcon} src="/img/checked.png" alt="" width={20} height={20} />
+              <Image
+                className={styles.checkedIcon}
+                src="/img/checked.png"
+                alt=""
+                width={20}
+                height={20}
+              />
             </div>
           </div>
         </div>
@@ -73,13 +98,13 @@ const Order = () => {
         <div className={styles.wrapper}>
           <h2 className={styles.title}>CART TOTAL</h2>
           <div className={styles.totalText}>
-            <b className={styles.totalTextTitle}>Subtotal</b>U$79.99
+            <b className={styles.totalTextTitle}>Subtotal</b>U${order.total}
           </div>
           <div className={styles.totalText}>
             <b className={styles.totalTextTitle}>Discount</b>U$0.00
           </div>
           <div className={styles.totalText}>
-            <b className={styles.totalTextTitle}>Total</b>U$79.99
+            <b className={styles.totalTextTitle}>Total</b>U${order.total}
           </div>
           <button disabled className={styles.button}>
             PAID
@@ -91,3 +116,11 @@ const Order = () => {
 };
 
 export default Order;
+export const getServerSideProps = async ({ params }) => {
+  const res = await axios.get(`http://localhost:3000/api/orders/${params.id}`);
+  return {
+    props: {
+      order: res.data,
+    },
+  };
+};
