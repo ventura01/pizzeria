@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import styles from "../styles/Cart.module.css";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { reset } from "../redux/cartSlice";
 import {
@@ -11,6 +10,7 @@ import {
   usePayPalScriptReducer,
 } from "@paypal/react-paypal-js";
 import axios from "axios";
+import OrderDetail from "../components/OrderDetail";
 
 const Cart = () => {
   // ---------------PAYPAL------------
@@ -20,6 +20,7 @@ const Cart = () => {
   const style = { layout: "vertical" };
   // ---------------------------------
   const router = useRouter();
+  const [cash, setCash] = useState(false);
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
 
@@ -31,6 +32,7 @@ const Cart = () => {
     } catch (error) {
       console.log(error);
     }
+    console.log(res.status);
   };
 
   // Custom component to wrap the PayPalButtons and handle currency changes
@@ -77,7 +79,7 @@ const Cart = () => {
           onApprove={function (data, actions) {
             return actions.order.capture().then(function (details) {
               // Your code here after capture the order
-              // console.log(details);
+              console.log(details);
               const shipping = details.purchase_units[0].shipping;
               createOrder({
                 customer: shipping.name.full_name,
@@ -159,7 +161,12 @@ const Cart = () => {
           </div>
           {open ? (
             <div className={styles.paymentMethods}>
-              <button className={styles.payButton}>CASH ON DELEIVERY</button>
+              <button
+                onClick={() => setCash(true)}
+                className={styles.payButton}
+              >
+                CASH ON DELEIVERY
+              </button>
               <PayPalScriptProvider
                 options={{
                   "client-id":
@@ -179,6 +186,7 @@ const Cart = () => {
           )}
         </div>
       </div>
+      {cash && <OrderDetail total={cart.total} createOrder={createOrder} />}
     </div>
   );
 };
